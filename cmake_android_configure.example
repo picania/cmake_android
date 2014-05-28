@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ ! -d build_android ]; then
+  mkdir build_android
+fi
+
+cd build_android
+
+cmake -G "Unix Makefiles" \
+  -DCMAKE_BUILD_TYPE=Debug \
+  -DCMAKE_INSTALL_PREFIX=$HOME/crossplatform/android \
+  -DCMAKE_PREFIX_PATH=$HOME/crossplatform/android \
+  -DCMAKE_TOOLCHAIN_FILE=../cmake/android.toolchain.cmake \
+  -DANDROID_NATIVE_API_LEVEL=android-19 \
+  -DANDROID_TOOLCHAIN_NAME=arm-linux-androideabi-4.8 \
+  -DANDROID_STL=gnustl_static \
+  ../
+
