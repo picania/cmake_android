@@ -3,9 +3,11 @@
       package="@MANIFEST_PACKAGE@"
       android:versionCode="@MANIFEST_VERSION_CODE@"
       android:versionName="@MANIFEST_VERSION_NAME@">
-    <uses-sdk android:minSdkVersion="@MANIFEST_MIN_SDK_VERSION@" />
+    <uses-sdk android:minSdkVersion="@MANIFEST_MIN_SDK_VERSION@"
+              android:targetSdkVersion="@MANIFEST_TARGET_SDK_VERSION@" />
     <application android:label="@string/app_name"
-                 android:debuggable="@MANIFEST_APP_DEBUGGABLE@">
+                 android:icon="@drawable/ic_launcher"
+                 android:allowBackup="false">
         <activity android:name="@MANIFEST_APP_ACTIVITY@"
                   android:label="@string/app_name">
             <intent-filter>

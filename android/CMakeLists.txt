@@ -26,7 +26,7 @@ add_custom_target(build_apk_debug
   #copy the library to obj, then strip the symbols from it
   DEPENDS build.xml hellojni
   COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/obj/local/${ANDROID_ABI}
-  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/libs/${ANDROID_ABI}/libhellojni.so ${CMAKE_CURRENT_SOURCE_DIR}/obj/local/${ANDROID_ABI}
+  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/jni/${ANDROID_ABI}/libhellojni.so ${CMAKE_CURRENT_SOURCE_DIR}/obj/local/${ANDROID_ABI}
   COMMAND ${ANT_COMMAND} debug
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
@@ -35,6 +35,11 @@ add_custom_target(build_apk_release
   DEPENDS build.xml
   COMMAND ${ANT_COMMAND} release
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+add_custom_target(deploy_debug_apk
+  COMMAND ${ADB_COMMAND} uninstall com.example.hellojni
+  COMMAND ${ADB_COMMAND} install -r ${CMAKE_CURRENT_SOURCE_DIR}/bin/HelloJni-debug.apk
 )
 
 # include jni
