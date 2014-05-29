@@ -1,8 +1,8 @@
-add_library(nativemain STATIC
+add_library(hellojni SHARED
     nativemain.cpp
+    jnientrypoint.cpp
 )
 
-### redefined library output path
-set_target_properties(nativemain
-    PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/android/libs/${ANDROID_ABI}
+set_target_properties(hellojni
+    PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/android/jni/${ANDROID_ABI}
 )
