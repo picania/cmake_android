@@ -13,6 +13,9 @@ bin/
 gen/
 libs/
 obj/
+jni/armeabi-v7a
+jni/Android.mk
+jni/Application.mk
 
 # Gradle files
 .gradle/
@@ -26,3 +29,9 @@ proguard/
 
 *~
 AndroidManifest.xml
+
+# Eclipse project
+.settings/
+.project
+.cproject
+.classpath

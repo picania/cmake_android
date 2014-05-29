@@ -1,3 +1,6 @@
+include(Android.cmake)
+include(Application.cmake)
+
 add_library(hellojni SHARED
     entrypoint.cpp
 )
