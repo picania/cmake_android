@@ -1,5 +1,5 @@
-set(JNI_MODULE_NAME hellojni)
-set(JNI_MODULE_SOURCES ${ANDROID_ABI}/libhellojni.so)
+set(JNI_MODULE_NAME hellogles)
+set(JNI_MODULE_SOURCES ${ANDROID_ABI}/libhellogles.so)
 
 configure_file(
     ${CMAKE_SOURCE_DIR}/cmake/templates/Android.mk.in

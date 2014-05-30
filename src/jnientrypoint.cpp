@@ -1,35 +1,41 @@
-#include <string.h>
 #include <jni.h>
+#include <GL/glew.h>
+#include <android/log.h>
 
 #include "nativemain.h"
 
-#if defined(__arm__)
-  #if defined(__ARM_ARCH_7A__)
-    #if defined(__ARM_NEON__)
-      #define ABI "armeabi-v7a/NEON"
-    #else
-      #define ABI "armeabi-v7a"
-    #endif
-  #else
-   #define ABI "armeabi"
-  #endif
-#elif defined(__i386__)
-   #define ABI "x86"
-#elif defined(__mips__)
-   #define ABI "mips"
-#else
-   #define ABI "unknown"
-#endif
+#define  LOG_TAG    "hellogles_native"
+#define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
+#define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
 extern "C"
 {
 
-
-JNIEXPORT jstring JNICALL Java_com_example_hellojni_HelloJni_stringFromJNI(JNIEnv* env, jobject)
+JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* /*reserved*/)
 {
-    std::string hello = helloWorld(ABI);
+	LOGI("Call ON_Init...");
+	GLenum ok = glewInit();
 
-    return env->NewStringUTF(hello.c_str());
+	if (ok != GLEW_OK)
+		return -1;
+
+	return JNI_VERSION_1_6;
+}
+
+JNIEXPORT void JNICALL Java_com_example_hellogles_NativeWrapper_init(JNIEnv* env, jobject, jint width, jint height)
+{
+	LOGI("Call init %d x %d", width, height);
+	glViewport(0, 0, width, height);
+}
+
+JNIEXPORT void JNICALL Java_com_example_hellogles_NativeWrapper_draw(JNIEnv* env, jobject)
+{
+	LOGI("Call draw...");
+	glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	// Draw a triangle from the 3 vertices
+	//glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
 }

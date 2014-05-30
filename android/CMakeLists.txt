@@ -19,14 +19,14 @@ endif()
 add_custom_command(
   OUTPUT build.xml
   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/AndroidManifest.xml
-  COMMAND ${ANDROID_COMMAND} update project -t android-${ANDROID_API_LEVEL} --name HelloJni -p ${CMAKE_CURRENT_SOURCE_DIR}
+  COMMAND ${ANDROID_COMMAND} update project -t android-${ANDROID_API_LEVEL} --name HelloGLES -p ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_custom_target(build_apk_debug
   #copy the library to obj, then strip the symbols from it
-  DEPENDS build.xml hellojni
+  DEPENDS build.xml hellogles
   COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_SOURCE_DIR}/obj/local/${ANDROID_ABI}
-  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/jni/${ANDROID_ABI}/libhellojni.so ${CMAKE_CURRENT_SOURCE_DIR}/obj/local/${ANDROID_ABI}
+  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/jni/${ANDROID_ABI}/libhellogles.so ${CMAKE_CURRENT_SOURCE_DIR}/obj/local/${ANDROID_ABI}
   COMMAND ${ANT_COMMAND} debug
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
@@ -38,8 +38,8 @@ add_custom_target(build_apk_release
 )
 
 add_custom_target(deploy_debug_apk
-  COMMAND ${ADB_COMMAND} uninstall com.example.hellojni
-  COMMAND ${ADB_COMMAND} install -r ${CMAKE_CURRENT_SOURCE_DIR}/bin/HelloJni-debug.apk
+  COMMAND ${ADB_COMMAND} uninstall com.example.hellogles
+  COMMAND ${ADB_COMMAND} install -r ${CMAKE_CURRENT_SOURCE_DIR}/bin/HelloGLES-debug.apk
 )
 
 # include jni
