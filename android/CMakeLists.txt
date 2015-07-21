@@ -1,6 +1,6 @@
 include(AndroidManifest.cmake)
 
-find_host_program(ANDROID_COMMAND NAMES android android.exe)
+find_host_program(ANDROID_COMMAND NAMES android android.exe android.bat)
 if(NOT ANDROID_COMMAND)
     message(WARNING "Could not find android tool. Add it to the path for upgrade/generate project.")
 endif()
