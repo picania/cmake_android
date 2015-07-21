@@ -19,7 +19,7 @@ endif()
 add_custom_command(
   OUTPUT build.xml
   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/AndroidManifest.xml
-  COMMAND ${ANDROID_COMMAND} update project -t android-${ANDROID_API_LEVEL} --name HelloGLES -p ${CMAKE_CURRENT_SOURCE_DIR}
+  COMMAND ${ANDROID_COMMAND} update project -t android-21 --name HelloGLES -p ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_custom_target(build_apk_debug
