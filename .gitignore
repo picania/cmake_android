@@ -7,3 +7,5 @@ install_manifest.txt
 cmake_android_configure
 cmake_linux_configure
 
+android/3rdparty/
+android/build.xml
